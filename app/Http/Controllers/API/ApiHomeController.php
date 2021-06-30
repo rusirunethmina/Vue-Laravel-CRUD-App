@@ -59,4 +59,34 @@ class ApiHomeController extends Controller
           return response()->json($user_data,200);
 
     }
+
+    public function update_user(Request $request,$id)
+    {
+        //return $id;
+
+       $data = Home::find($id);  //find the column each id
+
+      // return $data;
+       //$data->update(all($request));  //short cut update
+
+       $data->update([
+
+            'username' => $request->user_name,
+            'mail' => $request->email,
+            'address' => $request->address,
+            'mobile' => $request->mobile,
+        ]);
+
+        if(is_null($data)) return response()->json(['msg' => 'update is failed'], 400);
+
+        return response()->json(['msg' => 'successfully updated'], 200);
+
+
+    }
+
+    public function delete_user(Request $request,$id)
+    {
+        return $id;
+    }
+
 }
