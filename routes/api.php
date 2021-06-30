@@ -10,3 +10,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('add_user_ad','API\ApiHomeController@add_user');
+
+Route::get('get_user_data','API\ApiHomeController@get_user');

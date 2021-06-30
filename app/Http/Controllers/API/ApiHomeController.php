@@ -37,4 +37,14 @@ class ApiHomeController extends Controller
         return response()->json(['msg' => 'successfully added user'], 200);
 
     }
+
+    public function get_user()
+    {
+        $user_data = Home::get();
+
+        if(is_null($user_data)) return response()->json(['msg' => 'Data not availabe'], 400);
+
+        return response()->json($user_data,200);
+
+    }
 }

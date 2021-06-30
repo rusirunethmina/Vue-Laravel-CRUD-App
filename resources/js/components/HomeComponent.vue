@@ -56,13 +56,29 @@
     </div>
   </div><br/><br/><br/>
  <!--form end -->
+
+
+<!--search bar open tag -->
+ <div class="card">
+<div class="card-body">
+  <div class="col-lg-2 col-md-2 col-sm-2">
+     <input  type="text" class="form-control" /><br> <!--data catching -->
+     <button @click="search_user()" class="btn btn-success">Search</button> <!--function to search -->
+  </div>
+ </div>
+ </div>
+<!--search bar end tag -->
+
+
+
+  <!--table start -->
  <div class="card">
   <div class="card-body">
     <table class="table">
   <thead>
     <tr>
       <th scope="col">id</th>
-      <th scope="col">User Nmae</th>
+      <th scope="col">User Name</th>
       <th scope="col">E-mail</th>
       <th scope="col">address</th>
       <th scope="col">mobile</th>
@@ -71,12 +87,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Rusiru</td>
-      <td>rusiruc21@gmail.com</td>
-      <td>udagama</td>
-      <td>0775093711</td>
+    <tr v-for="(user,index) in user_data" :key="index">
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.username}}</td>
+      <td>{{user.mail}}</td>
+      <td>{{user.address}}</td>
+      <td>{{user.mobile}}</td>
       <td><button @click="user_update()" type="submit" class="btn btn-info">Update</button></td>
       <td><button @click="user_delete()" type="submit" class="btn btn-info">Delete</button></td>
     </tr>
@@ -84,6 +100,7 @@
 </table>
   </div>
 </div>
+ <!--table end -->
 
 </div>
 </template>
@@ -92,18 +109,21 @@
 <script>
 export default {
 
-  mounted() {},
-  created() {},
-  computed:{},
 
+  created() {
+       this.get_user_data();  //9.page akk load weddi run wenne created functions ake atule thiyana awa
+    },
     data () {
         return {
             user:new Form({  //user oject create
+                id:"",
                 user_name:"",
                 email:"",
                 address:"",
                 mobile:"",
             }),
+
+            user_data: {},
 
 
         };
@@ -126,12 +146,30 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-        }
+        },
 
-    },
+           get_user_data:function() {
+           axios.get('/api/get_user_data')
+          .then((response) => {
+               if(response.status == 200) {
+
+                 this.user_data=response.data;                     //5.
+               }
+
+
+           })
+           .catch((error) => {
+               console.log(error);
+           });
+    }
 
 
 
+
+
+
+
+    }
 
 
 }

@@ -2079,19 +2079,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
-  created: function created() {},
-  computed: {},
+  created: function created() {
+    this.get_user_data(); //9.page akk load weddi run wenne created functions ake atule thiyana awa
+  },
   data: function data() {
     return {
       user: new Form({
         //user oject create
+        id: "",
         user_name: "",
         email: "",
         address: "",
         mobile: ""
-      })
+      }),
+      user_data: {}
     };
   },
   methods: {
@@ -2107,6 +2126,17 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.user.reset(); //reset the form data after submit
 
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    get_user_data: function get_user_data() {
+      var _this2 = this;
+
+      axios.get('/api/get_user_data').then(function (response) {
+        if (response.status == 200) {
+          _this2.user_data = response.data; //5.
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -41827,54 +41857,82 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-2" }, [
+          _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              on: {
+                click: function($event) {
+                  return _vm.search_user()
+                }
+              }
+            },
+            [_vm._v("Search")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
         _c("table", { staticClass: "table" }, [
           _vm._m(1),
           _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rusiru")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("rusiruc21@gmail.com")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("udagama")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("0775093711")]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-info",
-                    attrs: { type: "submit" },
-                    on: {
-                      click: function($event) {
-                        return _vm.user_update()
+          _c(
+            "tbody",
+            _vm._l(_vm.user_data, function(user, index) {
+              return _c("tr", { key: index }, [
+                _c("th", { attrs: { scope: "row" } }, [
+                  _vm._v(_vm._s(user.id))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.username))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.mail))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.address))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.mobile))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          return _vm.user_update()
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Update")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-info",
-                    attrs: { type: "submit" },
-                    on: {
-                      click: function($event) {
-                        return _vm.user_delete()
+                    },
+                    [_vm._v("Update")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          return _vm.user_delete()
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Delete")]
-                )
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
               ])
-            ])
-          ])
+            }),
+            0
+          )
         ])
       ])
     ])
@@ -41897,7 +41955,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("User Nmae")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("User Name")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("E-mail")]),
         _vm._v(" "),
