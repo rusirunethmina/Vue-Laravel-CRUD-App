@@ -2096,9 +2096,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {},
+  mounted: function mounted() {},
   created: function created() {
-    this.get_user_data(); //9.page akk load weddi run wenne created functions ake atule thiyana awa
+    this.get_data(); //9.page akk load weddi run wenne created functions ake atule thiyana awa
   },
   data: function data() {
     return {
@@ -2130,7 +2133,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    get_user_data: function get_user_data() {
+    get_data: function get_data() {
       var _this2 = this;
 
       axios.get('/api/get_user_data').then(function (response) {
@@ -41872,6 +41875,22 @@ var render = function() {
               }
             },
             [_vm._v("Search")]
+          ),
+          _c("br"),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.get_data()
+                }
+              }
+            },
+            [_vm._v(" Show All Users")]
           )
         ])
       ])

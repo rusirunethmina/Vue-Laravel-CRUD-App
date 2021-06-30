@@ -63,7 +63,8 @@
 <div class="card-body">
   <div class="col-lg-2 col-md-2 col-sm-2">
      <input  type="text" class="form-control" /><br> <!--data catching -->
-     <button @click="search_user()" class="btn btn-success">Search</button> <!--function to search -->
+     <button @click="search_user()" class="btn btn-success">Search</button><br/><br/><br/> <!--function to search -->
+     <button @click="get_data()" class="btn btn-primary"> Show All Users</button>
   </div>
  </div>
  </div>
@@ -109,9 +110,10 @@
 <script>
 export default {
 
-
+  computed:{},
+  mounted() {},
   created() {
-       this.get_user_data();  //9.page akk load weddi run wenne created functions ake atule thiyana awa
+       this.get_data();  //9.page akk load weddi run wenne created functions ake atule thiyana awa
     },
     data () {
         return {
@@ -148,7 +150,7 @@ export default {
             });
         },
 
-           get_user_data:function() {
+           get_data:function() {
            axios.get('/api/get_user_data')
           .then((response) => {
                if(response.status == 200) {
@@ -170,6 +172,8 @@ export default {
 
 
     }
+
+
 
 
 }
