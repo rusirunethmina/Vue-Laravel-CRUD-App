@@ -54,8 +54,36 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><br/><br/><br/>
  <!--form end -->
+ <div class="card">
+  <div class="card-body">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">User Nmae</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">address</th>
+      <th scope="col">mobile</th>
+      <th scope="col">Action</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Rusiru</td>
+      <td>rusiruc21@gmail.com</td>
+      <td>udagama</td>
+      <td>0775093711</td>
+      <td><button @click="user_update()" type="submit" class="btn btn-info">Update</button></td>
+      <td><button @click="user_delete()" type="submit" class="btn btn-info">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
 
 </div>
 </template>
@@ -64,6 +92,9 @@
 <script>
 export default {
 
+  mounted() {},
+  created() {},
+  computed:{},
 
     data () {
         return {
@@ -85,7 +116,8 @@ export default {
             this.user.post('/api/add_user_ad')
                .then(response => {
                 if (response.status == 200) {
-                  // this.$router.push('/home');
+                    this.$toaster.success(response.data.msg)
+                  //this.$router.push('/home');
                  //swal.fire(response.data.msg);
                 }
                   this.user.reset();   //reset the form data after submit
@@ -96,7 +128,8 @@ export default {
             });
         }
 
-    }
+    },
+
 
 
 

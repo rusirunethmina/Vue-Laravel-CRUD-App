@@ -34,7 +34,7 @@ class ApiHomeController extends Controller
         //return $data;
         if(is_null($data)) return response()->json(['msg' => 'failed to create'], 400);
 
-        return response()->json(['msg' => 'successfully added record'], 200);
+        return response()->json(['msg' => 'successfully added user'], 200);
 
     }
 }
