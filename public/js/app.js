@@ -2113,6 +2113,7 @@ __webpack_require__.r(__webpack_exports__);
         address: "",
         mobile: ""
       }),
+      search_data: "",
       user_data: {}
     };
   },
@@ -41860,8 +41861,28 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-2" }, [
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
+        _c("div", { staticClass: "col-lg-4 col-md-4 col-sm-4" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search_data,
+                expression: "search_data"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.search_data },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search_data = $event.target.value
+              }
+            }
+          }),
           _c("br"),
           _vm._v(" "),
           _c(

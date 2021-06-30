@@ -61,8 +61,8 @@
 <!--search bar open tag -->
  <div class="card">
 <div class="card-body">
-  <div class="col-lg-2 col-md-2 col-sm-2">
-     <input  type="text" class="form-control" /><br> <!--data catching -->
+  <div class="col-lg-4 col-md-4 col-sm-4">
+     <input  type="text" v-model="search_data" class="form-control" /><br> <!--data catching -->
      <button @click="search_user()" class="btn btn-success">Search</button><br/><br/><br/> <!--function to search -->
      <button @click="get_data()" class="btn btn-primary"> Show All Users</button>
   </div>
@@ -124,6 +124,8 @@ export default {
                 address:"",
                 mobile:"",
             }),
+
+            search_data:"",
 
             user_data: {},
 
