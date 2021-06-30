@@ -2144,6 +2144,17 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    search_user: function search_user() {
+      var _this3 = this;
+
+      axios.get('/api/search_value/' + this.search_data).then(function (response) {
+        if (response.status == 200) {
+          _this3.user.status = response.data;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });

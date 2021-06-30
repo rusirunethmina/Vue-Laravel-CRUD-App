@@ -47,4 +47,16 @@ class ApiHomeController extends Controller
         return response()->json($user_data,200);
 
     }
+
+    public function search_user($search_data)
+    {
+          //return $search_data;
+
+          $user_data = Home::where('id',$search_data)->get();
+
+          if(is_null($user_data)) return response()->json(['msg' => 'Data not filter'], 400);
+
+          return response()->json($user_data,200);
+
+    }
 }

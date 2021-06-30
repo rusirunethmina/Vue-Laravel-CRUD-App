@@ -89,7 +89,7 @@
   </thead>
   <tbody>
     <tr v-for="(user,index) in user_data" :key="index">
-      <th scope="row">{{user.id}}</th>
+      <td>{{user.id}}</td>
       <td>{{user.username}}</td>
       <td>{{user.mail}}</td>
       <td>{{user.address}}</td>
@@ -137,13 +137,14 @@ export default {
 
     methods:{
         add_users() {
-            this.user.post('/api/add_user_ad')
+            this.user.post("/api/add_user_ad")
                .then(response => {
                 if (response.status == 200) {
                     this.$toaster.success(response.data.msg)
                   //this.$router.push('/home');
                  //swal.fire(response.data.msg);
                 }
+                  this.get_data();
                   this.user.reset();   //reset the form data after submit
             })
 
@@ -152,12 +153,12 @@ export default {
             });
         },
 
-           get_data:function() {
-           axios.get('/api/get_user_data')
+           get_data() {
+           axios.get("/api/get_user_data")
           .then((response) => {
                if(response.status == 200) {
 
-                 this.user_data=response.data;                     //5.
+                 this.user_data=response.data;
                }
 
 
@@ -165,8 +166,22 @@ export default {
            .catch((error) => {
                console.log(error);
            });
-    }
+       },
 
+          search_user() {
+          axios.get("/api/search_value/" + this.search_data)
+              .then((response) => {
+               if(response.status == 200) {
+
+                this.user_data=response.data;
+               }
+
+
+           })
+           .catch((error) => {
+               console.log(error);
+           });
+      }
 
 
 
