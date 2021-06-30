@@ -15,6 +15,8 @@ window.swal = Swal;
 
 
 
+
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('home-component', require('./components/HomeComponent.vue').default);

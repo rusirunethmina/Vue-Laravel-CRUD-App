@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "sweetalert2": "^11.0.18",
-        "vform": "^2.1.0"
+        "vform": "^2.1.0",
+        "vue-toast-notification": "^0.6.2"
     }
 }

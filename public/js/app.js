@@ -2068,9 +2068,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.user.post('/api/add_user_ad').then(function (response) {
-        if (response.status == 200) {
-          // this.$router.push('/home');
-          swal.fire(response.data.msg);
+        if (response.status == 200) {// this.$router.push('/home');
+          //swal.fire(response.data.msg);
         }
 
         _this.user.reset(); //reset the form data after submit

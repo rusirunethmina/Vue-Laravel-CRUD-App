@@ -86,7 +86,7 @@ export default {
                .then(response => {
                 if (response.status == 200) {
                   // this.$router.push('/home');
-                 swal.fire(response.data.msg);
+                 //swal.fire(response.data.msg);
                 }
                   this.user.reset();   //reset the form data after submit
             })
